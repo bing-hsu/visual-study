@@ -13,21 +13,25 @@ export interface Dimension {
   height: number;
 }
 
-export default function buildSvg(parent: string, id: string, dim: Dimension, margin: Margin) {
+export default function buildSvg(
+  parent: string,
+  id: string,
+  dim: Dimension,
+  margin: Margin,
+) {
   const containerId = `${id}__container`;
-  d3.select(parent).append('svg')
-      .attr('id', id)
-      .attr('width', dim.width)
-      .attr('height', dim.height)
-      .attr('transform', `translate(${dim.x},${dim.y})`)
-      .append('g')
-        .attr('id', containerId)
-        .attr('transform', `translate(${margin.left},${margin.top})`);
+  d3.select(parent).append("svg")
+    .attr("id", id)
+    .attr("width", dim.width)
+    .attr("height", dim.height)
+    .attr("transform", `translate(${dim.x},${dim.y})`)
+    .append("g")
+    .attr("id", containerId)
+    .attr("transform", `translate(${margin.left},${margin.top})`);
   return {
     getSvg: () => d3.select("#" + id),
     getContainer: () => d3.select("#" + containerId),
     chartWidth: dim.width - margin.left - margin.right,
-    chartHeight: dim.height - margin.top - margin.bottom
+    chartHeight: dim.height - margin.top - margin.bottom,
   };
 }
-
