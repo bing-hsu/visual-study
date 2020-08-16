@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "outDir": "./js",
+    "target": "ES6",
+    "module": "ES6",
+    "watch": true,
+    "noImplicitAny": false,
+    "lib": ["DOM", "ES6"]
+  },
+  "include": ["./src/**/*.ts"]
+}
