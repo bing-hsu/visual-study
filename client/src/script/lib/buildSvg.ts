@@ -9,18 +9,19 @@ export interface SvgBuilderOptions {
   dim: Dimension;
   margin: Margin
 }
+
 export default function buildSvg({containerSelector, svgId, dim, margin}: SvgBuilderOptions) {
   const containerGroupId = `${svgId}__container`;
 
   d3.select(containerSelector)
       .append("svg")
-        .attr("id", svgId)
-        .attr("width", dim.width)
-        .attr("height", dim.height)
-        .attr("transform", `translate(${dim.x},${dim.y})`)
+      .attr("id", svgId)
+      .attr("width", dim.width)
+      .attr("height", dim.height)
+      .attr("transform", `translate(${dim.x},${dim.y})`)
       .append("g")
-        .attr("id", containerGroupId)
-        .attr("transform", `translate(${margin.left},${margin.top})`);
+      .attr("id", containerGroupId)
+      .attr("transform", `translate(${margin.left},${margin.top})`);
 
   return {
     getSvg: () => d3.select(idSelector(svgId)),
