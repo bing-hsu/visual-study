@@ -5,8 +5,8 @@ import * as d3 from "d3";
 import "../style/main.css";
 import buildSvg from "./lib/buildSvg";
 
-const margin = { top: 40, bottom: 20, left: 20, right: 20 };
-const dimension = { x: 0, y: 0, width: 1280, height: 600 };
+const margin = { top: 60, bottom: 60, left: 20, right: 20 };
+const dimension = { x: 0, y: 0, width: 1280, height: 800 };
 const { getContainer, chartHeight, chartWidth } = buildSvg(
   "main",
   "graph",
@@ -23,7 +23,7 @@ treeLayout(root);
 const nodes = root.descendants();
 
 const sampleExtent = d3.extent(nodes.map((n) => n.data.label.samples));
-const radiiScale = d3.scaleLinear().domain(sampleExtent).rangeRound([5, 25]);
+const radiiScale = d3.scaleLinear().domain(sampleExtent).rangeRound([5, 30]);
 
 type NodeDatum = HierarchyPointNode<any> & {
   parent: string;
@@ -36,10 +36,11 @@ getContainer().append("g").classed("tree-nodes", true)
   .join("circle")
   .attr("cx", (d) => d.x)
   .attr("cy", (d) => d.y)
-  .attr("r", (d) => radiiScale(d.data.label.samples))
-  .attr("stroke", (d) => d.children ? "#aaa" : "#555")
-  .attr("stroke-dasharray", (d) => d.children ? "3 1" : "")
-  // .attr("fill", "#fff")
+  // .attr("r", (d) => d.children ? radiiScale(d.data.label.samples) : 5)
+    .attr('r', d => radiiScale(d.data.label.samples))
+  // .attr("stroke", (d) => d.children ? "#aaa" : "#555")
+  // .attr("stroke-dasharray", (d) => d.children ? "3 1" : "")
+  .attr("fill", "#fff")
     .attr("fill", d => d.parent? d.data.fillColor : "#999")
   .attr(
     "data-parent-size",
@@ -49,34 +50,50 @@ getContainer().append("g").classed("tree-nodes", true)
 // .transition().duration(1000).delay((d, idx) => d.depth * 1000)
 // .attr('fill', d => d.data.fillColor)
 
+
 const getSize = (n) => n.data.label.samples;
 const getClass = (n) => n.data.label.class;
+const getFillColor = (n) => n.data.fillColor;
+const getX = (n) => n.x;
+const getY = (n) => n.y;
 const getChildren = (n) => n.children;
-const extractNode = (n) => ({ size: getSize(n), class: getClass(n) });
+const extractNode = (n) => ({ size: getSize(n), fillColor: getFillColor(n), class: getClass(n), x: getX(n.parent), y: getY(n.parent), parentSize: getSize(n.parent)});
 const hasChildren = (n) => !!n.children;
-const prepNodesForArch = (nodes) => nodes.map((n) => hasChildren(n) ? getChildren(n).map(extractNode) : [extractNode(n)] );
+const prepNodesForArch = (nodes) => nodes.map((n) => hasChildren(n) ? getChildren(n).map(extractNode) : null ).filter(n => n);
 
-// const nodesForArch: {size: number; class:string}[] = prepNodesForArch(nodes);
-// const angleCal = d3.pie<typeof nodesForArch[0]>().value(d => d.size);
-// const arcPathGen = d3.arc<typeof nodesForArch[0]>()
-//   .innerRadius(d => radiiScale(d.size) * .2)
-//   .outerRadius(d => radiiScale(d.size));
-//
-// getContainer().append('g').classed('tree-rings', true)
-//     .selectAll('path')
-//     .data<typeof nodesForArch[0]>(nodesForArch.map(angleCal))
-//     .join('path')
-//     .attr('d', d => {
-//       console.log(d);
-//       const p = arcPathGen(d);
-//       return p;
-//     })
-    // .attr('transform', d => {
-    //   const radius = radiiScale(d.size / 2);
-    //   const cx = d.data.x;
-    //   const cy = d.data.y;
-    //   return `translate(${radius},${radius}) translate(${cx},${cy})`
-    // })
+console.log(prepNodesForArch(nodes));
+
+const nodesForArch: {size: number; class:string; data: any}[] = prepNodesForArch(nodes);
+const calAngle = d3.pie<typeof nodesForArch[0]>().value(d => d.size);
+const arcPathGen = d3.arc<typeof nodesForArch[0]>()
+  .innerRadius(d =>  radiiScale(d.data.parentSize) * .6)
+  .outerRadius(d => radiiScale(d.data.parentSize))
+    .cornerRadius(1)
+
+const setOfAngles = nodesForArch.map(calAngle); // each item contains n spheres of ring
+const setOfPaths = setOfAngles.map(rings => rings.map(r => ({pathStr: arcPathGen(r), fillColor: r.data.fillColor, class: r.data.class, radius: radiiScale(r.data.size), x: r.data.x, y: r.data.y}))); // each item contains strings of path
+console.log(setOfAngles);
+// console.log(setOfPaths)
+
+// @ts-ignore
+getContainer().append('g').classed('tree-rings', true)
+    .selectAll('g.ring')
+    .data<typeof nodesForArch[0]>(setOfPaths)
+    .join('g') // each [path, path] map to a <g>
+    .classed('ring', true)
+    .selectAll('path')
+    .data(d => d)
+    .join('path')
+    .attr('transform', d => {
+      const {x, y} = d;
+      return `translate(${x},${y})`
+    })
+    .attr('data-class', d => d.class)
+    .attr('d', d => d.pathStr)
+    .attr('fill', d => d.fillColor)
+    .attr('stroke', '#fff')
+    .attr('stroke-width', 2)
+    // .style('display', 'none')
 
 const links = root.links();
 const pathD = (
@@ -92,7 +109,7 @@ const pathD = (
   return `M ${parentX},${parentY + delta1} v ${delta2} L ${childX},${parentY +
     delta1 + delta2} v ${delta2}`;
 };
-const linkWidthScale = radiiScale.rangeRound([.5, 8]);
+const linkWidthScale = radiiScale.rangeRound([.5, 10]);
 getContainer().append("g").classed("tree-links", true)
   .selectAll("path")
   .data<{ source: NodeDatum; target: NodeDatum }>(links as any)
@@ -113,7 +130,7 @@ const textPos = (
   const parentX = source.x, parentY = source.y;
   const childY = target.y;
   const deltaSum = Math.abs(childY - parentY) / 2;
-  const textDelta = deltaSum - fontSize;
+  const textDelta = deltaSum - fontSize - 5;
   return { x: parentX, y: parentY + textDelta };
 };
 getContainer().append("g").classed("tree-condTexts", true)
