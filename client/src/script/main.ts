@@ -61,7 +61,6 @@ const extractNode = (n) => ({ size: getSize(n), fillColor: getFillColor(n), clas
 const hasChildren = (n) => !!n.children;
 const prepNodesForArch = (nodes) => nodes.map((n) => hasChildren(n) ? getChildren(n).map(extractNode) : null ).filter(n => n);
 
-console.log(prepNodesForArch(nodes));
 
 const nodesForArch: {size: number; class:string; data: any}[] = prepNodesForArch(nodes);
 const calAngle = d3.pie<typeof nodesForArch[0]>().value(d => d.size);
@@ -72,8 +71,6 @@ const arcPathGen = d3.arc<typeof nodesForArch[0]>()
 
 const setOfAngles = nodesForArch.map(calAngle); // each item contains n spheres of ring
 const setOfPaths = setOfAngles.map(rings => rings.map(r => ({pathStr: arcPathGen(r), fillColor: r.data.fillColor, class: r.data.class, radius: radiiScale(r.data.size), x: r.data.x, y: r.data.y}))); // each item contains strings of path
-console.log(setOfAngles);
-// console.log(setOfPaths)
 
 // @ts-ignore
 getContainer().append('g').classed('tree-rings', true)
