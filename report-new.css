@@ -50,10 +50,25 @@ a:hover {
 .row {
     display: block;
     margin: 0 -15px;
+    /*background-color: rgba(157, 157, 157, 0.1);*/
+}
+
+
+.row.right-align {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .col {
     width: 41%;
+}
+
+.col > .section-title:first-child {
+    margin-top: 0;
+}
+
+.col > .content-card:last-child {
+    margin-bottom: 0;
 }
 
 .section-title {
@@ -121,7 +136,7 @@ a:hover {
     margin-bottom: 0;
 }
 
-.content-card.flex-content {
+.flex-content {
     display: flex;
     flex-flow: column;
 }
@@ -154,9 +169,15 @@ a:hover {
 }
 
 .content-card__list > * {
-    /*padding-left: 20px;*/
-    width: 240px;
+    padding-left: 2em;
+}
 
+.suggestion .bulletin {
+    margin-bottom: .6em;
+}
+
+.bulletin::before {
+    content: "- ";
 }
 
 .variable-block {
@@ -192,4 +213,40 @@ a:hover {
     font-size: 1.5em;
     font-weight: bolder;
     margin-bottom: 10px;
+}
+
+.emphasize {
+    font-weight: bolder;
+    margin-bottom: 1.5em;
+}
+
+.badge {
+    /*display: inline-block;*/
+    border: none;
+    border-radius: 5px;
+    padding: 0 .5em;
+}
+
+.badge.positive {
+    color: #eee;
+    background-color: #008f02;
+}
+
+.badge.negative {
+    color: #eee;
+    background-color: #510101;
+}
+
+.side-note {
+    font-size: .7em;
+    color: #aaa;
+}
+
+.side-note a {
+    font-size: inherit;
+    color: inherit;
+}
+
+.side-note a:hover {
+    color: #c60212;
 }

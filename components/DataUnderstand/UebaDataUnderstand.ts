@@ -11,6 +11,7 @@ export default class UebaDataUnderstand extends HTMLElement implements Component
       <p class="section-title">
         First, business & data understanding
       </p>
+      
       <p class="sub-section-title">Task Overview</p>
       <p class="content-card"> 
         This project is to detect the risky behavior 
@@ -29,10 +30,10 @@ export default class UebaDataUnderstand extends HTMLElement implements Component
             dimensions
           </span>
       <span class="content-card__list"> 
-          <span class="content-card__list-item variable-name">Basic Information</span>
-          <span class="content-card__list-item variable-name">Willingness</span>
-          <span class="content-card__list-item variable-name">Capability</span>
-          <span class="content-card__list-item variable-name">Behavior</span>
+          <span class="content-card__list-item variable-name" style="width: 12em;">Basic Information</span>
+          <span class="content-card__list-item variable-name" style="width: 12em;">Willingness</span>
+          <span class="content-card__list-item variable-name" style="width: 12em;">Capability</span>
+          <span class="content-card__list-item variable-name" style="width: 12em;">Behavior</span>
       </span>
       </p>
       <p class="content-card">
@@ -66,6 +67,7 @@ export default class UebaDataUnderstand extends HTMLElement implements Component
             to improve the stability of the model
         </span>
       </p>
+      
       <p class="sub-section-title">Regarding data labels</p>
       <p class="content-card flex-content">
         <span> 
@@ -105,7 +107,6 @@ export default class UebaDataUnderstand extends HTMLElement implements Component
         <span class="content-card__highlight small both-margin">12%</span> of them are strongly
         correlated with the label
       </p>
-      
       <p class="content-card warn">
         <span class="warn__keyword">Heads Up</span> 
         <span class="content-card__highlight--shout">Current feature relevance might be biased</span>
@@ -116,7 +117,6 @@ export default class UebaDataUnderstand extends HTMLElement implements Component
             misleading feature ranking 
         </span>
       </p>
-      
       <p class="content-card suggestion"> 
         <span class="suggestion__keyword">Suggestion</span>
         <span>

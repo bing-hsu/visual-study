@@ -3,12 +3,14 @@ import UebaHeader from "./Header/UebaHeader";
 import {loadTag, registerComponent} from "./util";
 import UebaIntro from "./Intro/UebaIntro";
 import UebaDataUnderstand from "./DataUnderstand/UebaDataUnderstand";
+import UebaDataPrep from "./DataPrep/UebaDataPrep";
 
 
 const Tags = {
   UebaHeader: UebaHeader.tagName(),
   UebaIntro: UebaIntro.tagName(),
-  UebaDataUnderstand: UebaDataUnderstand.tagName()
+  UebaDataUnderstand: UebaDataUnderstand.tagName(),
+  UebaDataPrep: UebaDataPrep.tagName(),
 }
 
 @staticMember<ComponentConstructor>()
@@ -21,6 +23,7 @@ export default class UebaApp extends HTMLElement implements Component {
         ${loadTag(Tags.UebaHeader, {className: ['row'],})}
         ${loadTag(Tags.UebaIntro, {className: ['row']})}
         ${loadTag(Tags.UebaDataUnderstand, {className: ['row']})}
+        ${loadTag(Tags.UebaDataPrep, {className: ['row right-align']})}
     `;
   }
 
