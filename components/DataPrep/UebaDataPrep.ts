@@ -147,7 +147,7 @@ export default class UebaDataPrep extends HTMLElement implements Component {
             Use <span class="content-card__highlight--shout">precision, recall, F1-score, Kappa, ROC curve</span> as performance metric
         </span>
         <span class="bulletin"> 
-            Resampling data set
+            Resample data set
         </span>
         <span class="bulletin"> 
             Generate <span class="content-card__highlight--shout">synthetic samples</span>, for example, 
