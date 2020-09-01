@@ -1,0 +1,66 @@
+#main {
+    position: fixed;
+    top: 10px;
+}
+svg {
+    /*border: 1px #999 dashed;*/
+}
+
+#background {
+    height: 16000px;
+    width: 600px;
+}
+
+p {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    overflow-y: hidden;
+}
+
+#background > p:nth-child(2) {
+    padding-bottom: 800px;
+}
+
+#background > p:nth-child(2) + p {
+    padding-bottom: 40px;
+}
+
+.formula-diagram {
+    padding: 60px 40px;
+}
+
+.title {
+    padding-top: 120px;
+    font-size: 64px;
+}
+
+.title2 {
+    font-size: 50px;
+}
+
+.scroll-text {
+    position: relative;
+}
+
+.right-align {
+    left: 1280px;
+}
+.center-align {
+    text-align: center;
+}
+
+hr.empty-block {
+    margin: 1180px 0;
+    border: none;
+}
+
+div.placeholder {
+    height: 600px;
+    background-color: antiquewhite;
+    text-align: center;
+}
+
+div.placeholder p {
+    margin: auto auto;
+    line-height: 600px;
+    font-size: 64px;
+}

@@ -1,0 +1,69 @@
+.intro .intro__title {
+    margin-top: 30px;
+    font-size: 60px;
+}
+
+.intro .intro__language-select {
+    display: flex;
+    align-items: center;
+}
+
+select {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: lighter;
+    font-size: 1em;
+    line-height: 1.2em;
+    width: 120px;
+    margin-left: 10px;
+    padding: 3px 0;
+}
+
+.intro .intro__participants {
+    display: flex;
+    flex-flow: column;
+    font-size: .9em;
+}
+
+@keyframes slidein {
+    from {
+        top: 0;
+    }
+
+    to {
+        top: 10px;
+    }
+}
+
+@keyframes slidein {
+    from {
+        top: 10px;
+    }
+
+    to {
+        top: 0;
+    }
+}
+
+.intro__scroll_background {
+    position: relative;
+}
+
+.intro__keep-scroll {
+    position: absolute;
+    left: 120px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+
+    animation-direction: alternate;
+    animation-duration: 0.8s;
+    animation-name: slidein;
+    animation-iteration-count: infinite;
+}
+.intro__keep-scroll > p {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}

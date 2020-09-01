@@ -1,0 +1,37 @@
+
+.sub-items {
+    display: flex;
+    flex-flow: column;
+}
+
+.sub-items__highlight {
+    font-size: 2.5em;
+    color: darkred;
+    margin-right: 10px;
+}
+
+.sub-items__highlight--both {
+    font-size: 2.5em;
+    color: darkred;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+
+.item-list {
+    display: flex;
+    flex-flow: column;
+}
+
+.item-list span::before {
+    content: "• ";
+}
+
+.item-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+ul {
+    font-weight: 300;
+}

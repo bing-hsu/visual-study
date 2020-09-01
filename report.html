@@ -1,0 +1,618 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>UEBA</title>
+    <link rel="shortcut icon" href="script/static/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style/report-main.css"/>
+</head>
+<body>
+
+<header class="container" id="home">
+    <div class="row">
+        <img src="script/static/pwc-logo.png" alt="logo" width="80" height="80"/>
+    </div>
+</header>
+
+<main class="container">
+    <div class="row" id="intro">
+        <div class="col intro">
+            <p class="intro__title">
+                Model Validation Report for UEBA
+                Risk Intelligence Project </p>
+            <p class="intro__language-select">
+                <img src="script/static/img/world.png" alt="language" style="height: 1.2em; filter: contrast(1%)"/>
+                <select>
+                    <option>English</option>
+                </select>
+            </p>
+            <p class="intro__participants">
+                <span>
+                <span>Report participant:</span>
+                    <span>Bertram Gao, Yilun Luo</span>
+                </span>
+
+                <span>
+                <span>Date of completion of this report:</span>
+                    <span>August 15, 2020</span>
+                </span>
+            </p>
+            <p>
+                This validation report is used to summarize and visualize the model and the potential risk in the
+                construction process. It can be used to help clients better avoid potential problems.
+            </p>
+            <div class="intro__scroll_background">
+                <div class="intro__keep-scroll">
+                    <p>Scroll</p>
+                    <svg height="40" width="40">
+                        <path d="M0,0L40,0L20,10Z" fill="#000" stroke="none"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <hr class="whitespace" style="height: 10vh;">
+        <div class="col">
+            <p class="sub-title" id="data-understand-start">
+                First, business & data understanding
+            </p>
+            <p>
+                This project is to detect the risky behavior of employees
+                so as to reduce the risk of confidential data
+                leakage.
+            </p>
+            <hr class="whitespace"/>
+            <p class="sub-items">
+                <span>
+                    <span class="sub-items__highlight">3</span>
+                    <span>Models</span>
+                </span>
+                <span>
+                    were build in this project, using features from
+                </span>
+            </p>
+            <hr class="whitespace" style="height: 50vh"/>
+            <p class="sub-items">
+                <span>
+                    <span class="sub-items__highlight">4</span>
+                    <span>Dimensions</span>
+                </span>
+                <span class="item-list">
+                        <span>basic information</span>
+                        <span>willingness</span>
+                        <span>capability</span>
+                        <span>behavior</span>
+                </span>
+                <span style="padding-left: 40px; margin-top: 20px">that comprise of </span>
+            </p>
+            <hr class="whitespace" style="height: 50vh"/>
+            <p class="sub-items">
+                <span>
+                    <span class="sub-items__highlight">207</span>
+                    <span>Variables</span>
+                </span>
+            </p>
+            <hr class="whitespace" style="height: 40vh"/>
+            <p class="sub-items">
+                <span>
+                    Among these variables,</span>
+                <span>
+                    <span class="sub-items__highlight">16</span>
+                    variables are
+                    <span style="font-weight: bold; color: indianred">risky</span>.
+                    <span id="var-block">
+                    </span>
+                </span>
+                <span style="margin-top: 5px">
+                    They are not stable and will be
+                    greatly affected by the environment.
+                </span>
+                <span style="margin-top: 20px; color: indianred; font-weight: bold">
+                        They are likely to cause large
+                        deviations in the model predictions.
+                </span>
+            </p>
+            <hr class="whitespace"/>
+            <p class="sub-items">
+                <span class="sub-items__highlight" style="font-size: 1.5em; margin-bottom: 20px">Suggestion</span>
+                <span>
+                    Reduce the importance of such variables
+                    to improve the stability of the model
+                </span>
+            </p>
+            <hr class="whitespace" style="height: 10vh;"/>
+
+            <p class="sub-items">
+                <span>Regarding data labels</span>
+                <span style="padding-left: 40px">Model 1:<span
+                        class="sub-items__highlight--both">1259</span>samples</span>
+                <span style="padding-left: 40px">Model 2:<span
+                        class="sub-items__highlight--both">1320</span>samples</span>
+                <span style="padding-left: 40px">Model 3:<span
+                        class="sub-items__highlight--both">1277</span>samples</span>
+                <span>are used in training</span>
+            </p>
+            <hr class="whitespace--small" style="height: 10vh"/>
+            <p class="sub-items">
+                <span>Sample size used in this project is</span>
+                <span>less than<span class="sub-items__highlight--both">78%</span> models</span>
+                <span>in financial service industry</span>
+            </p>
+            <hr class="whitespace--small"/>
+            <p class="sub-items">
+                <span class="sub-items__highlight" style="font-size: 1.5em; margin-bottom: 20px">Suggestion</span>
+                <span>
+                    Increase the number of training samples as much as possible or use incremental training
+                </span>
+            </p>
+            <hr class="whitespace"/>
+            <p class="sub-items">
+                <span>There is a strong correlation between
+                    <span class="sub-items__highlight--both">40%</span>of the variables.</span>
+                <span style="padding-left: 0;"><span class="sub-items__highlight--both">12%</span>
+                    of the variables are strongly correlated with the label.</span>
+            </p>
+            <p class="sub-items">
+                <span style="margin-top: 20px; color: indianred; font-weight: bold">
+                    Current feature relevance might be biased.</span>
+                <span>The weights of the features belonging to groups of correlated
+                features decrease as the sizes of the groups increase, which might lead to incorrect model
+                interpretation and misleading feature ranking.</span>
+            </p>
+            <hr class="whitespace--small"/>
+            <p class="sub-items">
+                <span class="sub-items__highlight" style="font-size: 1.5em; margin-bottom: 20px">Suggestion</span>
+                <span>
+                    Highly correlated features can mask these interactions between different features.
+                    Try to remove redundant features and check their contribution to the performance.
+                </span>
+            </p>
+        </div>
+    </div>
+    <div class="row right-align" id="data-prep">
+        <div class="col">
+            <p class="sub-title" style="font-size: 60px">
+                Data Preparation
+            </p>
+            <p>
+                Methods used in data preprocessing are:
+            </p>
+            <ul>
+                <li>Handling missing values</li>
+                <li>One-hot encoding categorical variables</li>
+                <li>Standardization</li>
+            </ul>
+            <hr class="whitespace"/>
+            <p class="item-title">
+                NA check
+            </p>
+            <p class="sub-items">
+                <span>after preprocessing,</span>
+                <span style="font-weight: bold; color: indianred">11 variables still contain missing values</span>
+                <a href="#">Check details in Data Explore Tool </a>
+            </p>
+            <hr class="whitespace--small"/>
+            <p class="sub-items">
+                <span class="sub-items__highlight" style="font-size: 1.5em; margin-bottom: 20px">Suggestion</span>
+                <span>
+                    Double check whether those missing values are reasonable not.
+                </span>
+            </p>
+            <hr class="whitespace"/>
+            <p class="item-title">
+                Outlier Check
+            </p>
+            <p>
+                Let's check the results of outlier detection.
+            </p>
+            <hr class="whitespace"/>
+            <p>
+                1) Data points with extreme values on one variable.
+            </p>
+            <p>
+                Identify outliers with the 1.5xIQR rule.
+            </p>
+            <hr class="whitespace"/>
+            <p>
+                <span class="sub-items__highlight">21</span>
+                variables contain outliers
+            </p>
+            <hr class="whitespace"/>
+            <p class="sub-items">
+                <span class="sub-items__highlight" style="font-size: 1.5em; margin-bottom: 20px">Suggestion</span>
+                <span>
+                    Consider cropping variables based on business
+                    understanding.
+                </span>
+            </p>
+            <hr class="whitespace"/>
+            <p>
+                2) Unusual combinations on all the variables.
+            </p>
+            <hr class="whitespace"/>
+            <p>
+                For 2 clusters,
+                <span class="sub-items__highlight" style="margin-left: 10px">5</span>
+                instances far away from the nearest centroid
+            </p>
+            <hr class="whitespace"/>
+            <p>
+                For 3 clusters,
+                <span class="sub-items__highlight" style="margin-left: 10px">3</span>
+                instances far away from the nearest centroid
+            </p>
+            <hr class="whitespace"/>
+            <p>
+                For 4 clusters,
+                <span class="sub-items__highlight" style="margin-left: 10px">2</span>
+                instances far away from the nearest centroid
+            </p>
+            <hr class="whitespace"/>
+            <p>
+                For 5 clusters,
+                <span class="sub-items__highlight" style="margin-left: 10px">1</span>
+                instances far away from the nearest centroid
+            </p>
+            <hr class="whitespace"/>
+            <p class="sub-items">
+                <span class="sub-items__highlight" style="font-size: 1.5em; margin-bottom: 20px">Suggestion</span>
+                <span>
+                    Check the impact on forecast results.
+                    Remove those outliers if necessary.
+                </span>
+            </p>
+
+            <hr class="whitespace"/>
+            <p class="item-title">
+                Balance Check
+            </p>
+            <p class="sub-items">
+                <span>Ratio of positive to negative sample in data set:</span>
+            </p>
+            <hr class="whitespace--small"/>
+            <p class="sub-items">
+                <span style="padding-bottom: 20px;">
+                    Model 1:
+                    <span class="sub-items__highlight--both">17%</span>
+                    negative samples,
+                    <span class="sub-items__highlight--both">83%</span>
+                    positive sample
+                </span>
+                <span style="padding-bottom: 20px">
+                    Model 2:
+                    <span class="sub-items__highlight--both">22%</span>
+                    negative samples,
+                    <span class="sub-items__highlight--both">78%</span>
+                    posiitve sample
+                </span>
+                <span>
+                    Model 3:
+                    <span class="sub-items__highlight--both">27%</span>
+                    negative samples,
+                    <span class="sub-items__highlight--both">73%</span>
+                    positive sample
+                </span>
+            </p>
+            <hr class="whitespace--xsmall"/>
+            <p class="sub-items">
+                <span style="color: indianred; font-weight: bolder">
+                    Dataset used in training is considered imbalanced
+                </span>
+                <span>Imbalance dataset impacts on accuracy of your classifiers</span>
+            </p>
+            <hr class="whitespace--xsmall"/>
+            <p class="sub-items">
+                <span class="sub-items__highlight" style="font-size: 1.5em; margin-bottom: 20px">Suggestion</span>
+            </p>
+            <ul style="font-size: smaller">
+                <li>Collect more data that could balance your classes.</li>
+                <li>Change your performance metric. Use precision, recall, F1-score, Kappa, ROC curve or others</li>
+                <li>Resampling your data set</li>
+                <li>You can generate some synthetic samples like Synthetic Minority Over-sampling Technique (SMOTE)</li>
+                <li>You may also try for different algorithms</li>
+                <li>You may incorporate the penalized models like penalized-LDA, or penalized-SVM</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row" id="modeling">
+        <div class="col">
+            <p class="sub-title" style="font-size: 60px">
+                Modeling
+            </p>
+            <p class="sub-items">
+                <span style="font-weight: bolder"><span style="color: indianred; font-weight: bolder">Random forest model</span>
+                    is used as the classifier</span>
+            </p>
+            <hr class="whitespace--xsmall"/>
+            <p style="font-weight: bolder">Advantages of Random Forest</p>
+            <p class="sub-items">
+                <span style="padding-bottom: 40px;">
+                    1. Random Forest is based on the bagging algorithm and uses Ensemble Learning technique.
+                    It creates as many trees on the subset of the data and combines the output of all the trees.
+                    In this way it reduces overfitting problem in decision trees and also reduces the variance and
+                    therefore improves the accuracy.
+                </span>
+                <span style="padding-bottom: 40px">
+                    2. Random Forest algorithm is very stable. Even if a new data point is introduced in the dataset,
+                    the overall algorithm is not affected much since the new data may impact one tree, but it is very
+                    hard for it to impact all the trees.
+                </span>
+                <span>
+                    3. Random Forest is comparatively less impacted by noise.
+                </span>
+            </p>
+            <hr class="whitespace--xsmall"/>
+            <p style="font-weight: bolder">Disadvantages of Random Forest</p>
+            <p class="sub-items">
+                <span style="padding-bottom: 40px;">
+                    1. Complexity: Random Forest creates a lot of trees (unlike only one tree in case of decision
+                    tree) and combines their outputs. By default, it creates 100 trees in Python sklearn library.
+                    To do so, this algorithm requires much more computational power and resources. On the other
+                    hand decision tree is simple and does not require so much computational resources.
+                </span>
+                <span style="padding-bottom: 40px">
+                    2. Longer Training Period: Random Forest require much more time to train as compared to decision
+                    trees as it generates a lot of trees (instead of one tree in case of decision tree) and makes
+                    decision on the majority of votes.
+                </span>
+            </p>
+            <hr class="whitespace--xsmall"/>
+            <p class="sub-items">
+                <span class="sub-items__highlight" style="font-size: 1.5em; margin-bottom: 20px">Suggestion</span>
+                <span style="padding-bottom: 20px;">
+                    - One-hot encoding in the preprocessing can be removed. Random Forest works well with both
+                    categorical and continuous variables.
+                </span>
+                <span style="padding-bottom: 20px;">
+                    - Standardization in the preprocessing can be removed. No feature scaling (standardization and
+                    normalization) required in case of Random Forest as it uses rule based approach instead of
+                    distance calculation.
+                </span>
+                <span style="padding-bottom: 20px;">
+                    - Adjust the number of trees
+                </span>
+                <span style="padding-bottom: 20px;">
+                    - Adjust the number of iterations as needed
+                </span>
+                <span style="padding-bottom: 20px;">
+                    - Other models that you might be interested in: Decision Tree, XGBOOST, SVM
+                </span>
+            </p>
+            <hr class="whitespace--small"/>
+            <p class="sub-items">
+                <span>Regarding the data set division in the current project, we have</span>
+                <span><span class="sub-items__highlight--both">80%</span>data used as training set</span>
+                <span><span class="sub-items__highlight--both">20%</span>data used as testing set</span>
+            </p>
+            <hr class="whitespace--xsmall"/>
+            <p class="sub-items">
+                <span class="sub-items__highlight" style="font-size: 1.5em; margin-bottom: 20px">Suggestion</span>
+                <span style="padding-bottom: 20px;">
+                    The following data partitioning methods have been suggested in several literatures
+                    in the field of Machine learning/ Pattern recognition:
+                </span>
+                <span style="padding-bottom: 10px;">
+                    a) <span style="font-weight: bold">70%</span> of the entire Dataset for training (Training data)
+                </span>
+                <span style="padding-bottom: 10px;">
+                    b) <span style="font-weight: bold">15%</span> of the entire Dataset for validation (Validation data)
+                </span>
+                <span style="padding-bottom: 20px;">
+                    c) <span style="font-weight: bold">15%</span> of the entire Dataset for testing (Testing data)
+                </span>
+            </p>
+
+            <hr class="whitespace"/>
+            <p class="item-title">
+                Growing a tree
+            </p>
+            <hr class="whitespace"/>
+            <p>
+                Additional forks will add new information
+                that can increase a tree's prediction accuracy.
+            </p>
+            <hr class="whitespace"/>
+            <p>
+                Splitting one layer deeper,
+                the tree's accuracy improves to
+                <span class="sub-items__highlight" style="font-size: 2em">80%</span>.
+            </p>
+            <hr class="whitespace"/>
+            <p>
+                Adding several more layers, we get to
+                <span class="sub-items__highlight" style="font-size: 2em">85%</span>.
+            </p>
+            <hr class="whitespace"/>
+            <p>
+                You could even continue to add branches until
+                the tree's predictions are
+                <span class="sub-items__highlight" style="font-size: 2em; margin-left: 10px">95%</span> accurate, so
+                that at the end of every branch,
+                most of the samples are positive or negative.
+            </p>
+            <hr class="whitespace"/>
+
+            <hr class="whitespace"/>
+            <p class="item-title">
+                Making Predictions
+            </p>
+            <hr class="whitespace"/>
+            <p>
+                The decision tree model determines whether a behavior is risky or not.
+            </p>
+            <hr class="whitespace"/>
+            <p>
+                Here you can see the data that was used to train the tree flow through the tree.
+            </p>
+            <hr class="whitespace"/>
+            <p>
+                This data is called training data because it was used to train the model.
+            </p>
+        </div>
+    </div>
+    <div class="row right-align" id="eval">
+        <div class="col">
+            <p class="sub-title">Evaluation</p>
+            <hr class="whitespace" style="height: 10vh"/>
+            <p>
+                Overall score of the model is
+                <span class="sub-items__highlight" style="font-size: 2em;display: inline-block;">
+                    85/100 points
+                </span>
+            </p>
+            <hr class="whitespace" style="height: 10vh"/>
+            <p>
+                Higher than
+                <span class="sub-items__highlight" style="font-size: 2em; margin-left: 10px">
+                    92%
+                </span>
+                models in the financial service industry
+            </p>
+            <hr class="whitespace" style="height: 10vh"/>
+            <p>
+                Recall of negative samples is
+                <span style="color:indianred;">relatively low</span>
+            </p>
+            <hr class="whitespace"/>
+            <div class="sub-items">
+                <span class="sub-items__highlight" style="font-size: 1.5em; margin-bottom: 20px">Suggestion</span>
+                <ul>
+                    <li>Add more accurately tagged samples</li>
+                    <li>Precision and recall are a tradeoff.
+                        Sometimes we can sacrifice a little
+                        accuracy if we really want a higher recall
+                    </li>
+                    <li>Adjust the weight of training samples
+                    </li>
+                </ul>
+            </div>
+
+            <hr class="whitespace"/>
+            <p class="item-title">Feature Importance</p>
+            <p>
+                In the right figure, we can find the top
+                <span class="sub-items__highlight" style="font-size: 2em; margin-left: 10px">5</span>
+                import features in each model.
+            </p>
+            <p>
+                <span class="variable-name">Gender</span>
+                and <span class="variable-name">internet_access_count</span> appear
+                in all the 3 models.
+            </p>
+            <hr class="whitespace"/>
+            <p class="item-title" style="color: indianred">Risk 1</p>
+            <p>
+                <span class="variable-name">internet_access_count</span>
+                has too much importance compared to others.
+            </p>
+            <div class="sub-items">
+                <span class="sub-items__highlight" style="font-size: 1.5em; margin-bottom: 20px">Suggestion</span>
+                <ul>
+                    <li>Double check the preprocessing of such variables</li>
+                    <li>Update your model with new variables. Analyze the shifts the new variable produces in the feature importance table.</li>
+                </ul>
+            </div>
+            <hr class="whitespace"/>
+            <p class="item-title" style="color: indianred">Risk 2</p>
+            <p>
+                Variable <span class="variable-name">gender</span>
+                might have violated <span style="font-weight: bolder">Ethical</span> principles
+            </p>
+            <p class="sub-items">
+                <span class="sub-items__highlight" style="font-size: 1.5em; margin-bottom: 20px">Suggestion</span>
+                <span>
+                    Double confirm the usage of such sensitive variables. It is essential to ensure
+                    they reflect appropriate local regulations, values and social norms of the community within
+                    which AI solutions are to be deployed
+                </span>
+            </p>
+
+            <hr class="whitespace"/>
+            <p class="item-title" style="color: indianred">Risk 3</p>
+            <p>
+                Variable <span class="variable-name">gender</span>
+                might have violated <span style="font-weight: bolder">Fairness</span> principles
+            </p>
+            <p class="sub-items">
+                <span class="sub-items__highlight" style="font-size: 1.5em; margin-bottom: 20px">Suggestion</span>
+                <span>
+                    Let us consider “Equal Opportunity” in model prediction.
+                </span>
+            </p>
+            <hr class="whitespace--small"/>
+
+        </div>
+    </div>
+    <div class="row" id="deploy" style="margin-top: 120px">
+        <div class="col">
+            <p class="sub-title" style="font-size: 60px">
+                Deployment
+            </p>
+            <p>
+                The current average prediction time is
+                <span class="sub-items__highlight" style="font-size: 1.6em; margin-left: 10px;">800ms</span> for one
+                sample.
+                <span class="sub-items__highlight" style="font-size: 1.6em; margin-left: 10px">20%</span>
+                faster than the average speed in financial service industry.
+            </p>
+            <hr class="whitespace" style="height: 10vh"/>
+            <p>
+                <span class="sub-items__highlight" style="font-size: 1.4em;">
+                    2 p.m. - 6 p.m.
+                </span>
+                require predictions of
+                <span class="sub-items__highlight"
+                      style="font-size: 1.4em;margin-left: 10px">300 samples per second</span>,
+                the current
+                computing power can not meet the real-time demand.
+            </p>
+            <hr class="whitespace"/>
+            <div class="sub-items">
+                <span class="sub-items__highlight" style="font-size: 1.5em; margin-bottom: 20px">Suggestion</span>
+                <ul>
+                    <li>Increase hardware configuration</li>
+                    <li>Consider to use distributed computing frameworks</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- back to home -->
+    <hr class="whitespace" style="height: 10vh"/>
+    <div class="intro__scroll_background back-to-top">
+        <div class="intro__keep-scroll">
+            <p style="margin-bottom: 5px;">Back to Top</p>
+            <svg height="40" width="40">
+                <path d="M0,20L40,20L20,0Z" fill="#000" stroke="none"></path>
+            </svg>
+        </div>
+    </div>
+    <!-- Bottom Offset -->
+    <hr class="whitespace" style="height: 20vh"/>
+</main>
+
+
+<div id="vis-data-understand" class="vis-block right-block"></div>
+<div id="vis-data-prep" class="vis-block left-block"></div>
+<div id="vis-modeling" class="vis-block right-block"></div>
+<div id="vis-eval" class="vis-block left-block"></div>
+<div id="vis-deploy" class="vis-block right-block"></div>
+
+<script src="./script/report-main.ts"></script>
+<script>
+    const vars = `
+    email_count_p_deviation, email_count_g_eviation,
+email_p_count, email_count_g_count,
+confidential_access_p_deviation, confidential_access_g_deviation,
+confidential_p_count, confidential_access_g_count,
+system_access_p_deviation, system_access_g_deviation,
+system_access_p_count, system_access_p_count,
+pc_login_count p_deviation, pc_login_count g_deviation,
+pc_p_count_deviation, pc_g_count_deviation
+    `;
+    const varBlock = d3.select('#var-block');
+    const nodes = vars.split(",").map(t => `<span class="variable-name" style="font-size: .7em;">${t.trim()}</span>`).join(" ");
+    varBlock.node().innerHTML = nodes;
+</script>
+</body>
+</html>

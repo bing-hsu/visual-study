@@ -1,0 +1,140 @@
+html, body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial, Georgia, sans-serif;
+    font-size: 21px;
+    position: relative;
+}
+
+header img {
+    margin: 10px 0;
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.container {
+    position: relative;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1280px;
+    }
+}
+
+main p {
+    margin: 1.3em 0;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+ul {
+    line-height: 1.5;
+}
+
+
+.col {
+    width: 41%;
+}
+
+.right-align {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.whitespace {
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    height: 20vh;
+    padding: 0;
+    margin: 0;
+}
+
+.whitespace--small {
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    height: 10vh;
+    padding: 0;
+    margin: 0;
+}
+
+.whitespace--xsmall {
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    height: 5vh;
+    padding: 0;
+    margin: 0;
+}
+
+.sub-title {
+    font-size: 48px;
+    border-bottom: 3px solid;
+    padding-bottom: .25em;
+    margin-bottom: .5em;
+}
+
+.variable-name {
+    font-family: monospace;
+    /*border: 1px solid;*/
+    border-radius: 5px;
+    padding: 2px 10px;
+    background-color: #eee;
+}
+
+.back-to-top {
+    cursor: pointer;
+}
+
+.vis-block {
+    height: 100vh;
+    width: 45%;
+    /*border: 1px dashed;*/
+    /*background-color: #eeeeee;*/
+}
+
+.vis-block.right-block {
+    margin-right: 6%;
+}
+.vis-block.left-block {
+    margin-left: 5%;
+}
+
+#var-block {
+    display: inline-block;
+    padding: 5px;
+}
+
+#var-block span {
+    line-height: 1.5;
+}
+
+a {
+    color: #0bb9d0;
+}
