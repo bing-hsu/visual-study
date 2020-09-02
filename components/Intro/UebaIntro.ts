@@ -76,9 +76,8 @@ function IntroParticipants() {
 
 function IntroScrollBackground() {
   return `
-      <div class="__scroll_background">
-        <div class="__keep-scroll">
-        
+      <div class="scroll_background">
+        <div class="keep-scroll">
             <p>Scroll</p>
             <svg height="40" width="40">
                 <path d="M0,0L40,0L20,10Z" fill="#000" stroke="none"> 

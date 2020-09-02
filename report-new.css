@@ -272,3 +272,44 @@ a:hover {
 .side-note a:hover {
     color: #c60212;
 }
+/* Keep Scroll Animation */
+@keyframes slide-in {
+    from {
+        top: 0;
+    }
+    to {
+        top: 10px;
+    }
+}
+@keyframes slide-in {
+    from {
+        top: 10px;
+    }
+    to {
+        top: 0;
+    }
+}
+.scroll_background {
+    position: relative;
+}
+.keep-scroll {
+    position: absolute;
+    left: calc(40%);
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+
+    animation-direction: alternate;
+    animation-duration: 0.8s;
+    animation-name: slide-in;
+    animation-iteration-count: infinite;
+}
+.keep-scroll > p {
+    text-transform: uppercase;
+    font-weight: bolder;
+    display: block;
+    margin-bottom: 10px;
+}
+.back-to-top {
+    cursor: pointer;
+}

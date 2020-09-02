@@ -5,6 +5,8 @@ import UebaIntro from "./Intro/UebaIntro";
 import UebaDataUnderstand from "./DataUnderstand/UebaDataUnderstand";
 import UebaDataPrep from "./DataPrep/UebaDataPrep";
 import UebaModel from "./Modeling/UebaModel";
+import UebaEval from "./Eval/UebaEval";
+import UebaDeploy from "./Deploy/UebaDeploy";
 
 
 const Tags = {
@@ -13,6 +15,8 @@ const Tags = {
   UebaDataUnderstand: UebaDataUnderstand.tagName(),
   UebaDataPrep: UebaDataPrep.tagName(),
   UebaModel: UebaModel.tagName(),
+  UebaEval: UebaEval.tagName(),
+  UebaDeploy: UebaDeploy.tagName()
 }
 
 @staticMember<ComponentConstructor>()
@@ -25,8 +29,10 @@ export default class UebaApp extends HTMLElement implements Component {
         ${loadTag(Tags.UebaHeader, {className: ['row'],})}
         ${loadTag(Tags.UebaIntro, {className: ['row']})}
         ${loadTag(Tags.UebaDataUnderstand, {className: ['row']})}
-        ${loadTag(Tags.UebaDataPrep, {className: ['row right-align']})}
+        ${loadTag(Tags.UebaDataPrep, {className: ['row', 'right-align']})}
         ${loadTag(Tags.UebaModel, {className: ['row']})}
+        ${loadTag(Tags.UebaEval, {className: ['row', 'right-align']})}
+        ${loadTag(Tags.UebaDeploy, {className: ['row']})}
     `;
   }
 

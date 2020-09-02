@@ -33,7 +33,6 @@ select {
         top: 10px;
     }
 }
-
 @keyframes slidein {
     from {
         top: 10px;
@@ -43,11 +42,9 @@ select {
         top: 0;
     }
 }
-
 .intro__scroll_background {
     position: relative;
 }
-
 .intro__keep-scroll {
     position: absolute;
     left: 120px;
