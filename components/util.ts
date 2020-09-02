@@ -8,8 +8,9 @@ export function registerComponent(n: string, e: CustomElementConstructor) {
 
 interface AttrOptions {
   className?: string[];
-  attrs?: {[k: string]: string}
+  attrs?: { [k: string]: string }
 }
+
 const attrOptionsString = (opts: AttrOptions) => {
   const {className, attrs} = opts;
   let s = "";
@@ -17,6 +18,7 @@ const attrOptionsString = (opts: AttrOptions) => {
   if (attrs) s += Object.entries(attrs).map(([k, v]) => `${k}="${v}"`).join(' ');
   return s;
 }
+
 export function loadTag(tagName: string, opts?: AttrOptions) {
   return `<${tagName} ${opts ? attrOptionsString(opts) : ""}></${tagName}>`
 }

@@ -1,5 +1,5 @@
 import {Component, ComponentConstructor, staticMember} from "../types";
-import {registerComponent} from "../util";
+import {registerComponent, whiteSpace} from "../util";
 
 @staticMember<ComponentConstructor>()
 export default class UebaModel extends HTMLElement implements Component {
@@ -153,7 +153,8 @@ export default class UebaModel extends HTMLElement implements Component {
         <p class="content-card">
             This data is called training data because it was used to train the model.
         </p>
-         
+        
+        ${whiteSpace(10)}
     </div> 
     `
   }

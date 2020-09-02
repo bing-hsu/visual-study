@@ -1,5 +1,5 @@
 import {Component, ComponentConstructor, staticMember} from "../types";
-import {registerComponent} from "../util";
+import {registerComponent, whiteSpace} from "../util";
 
 @staticMember<ComponentConstructor>()
 export default class UebaEval extends HTMLElement implements Component {
@@ -88,6 +88,7 @@ export default class UebaEval extends HTMLElement implements Component {
         </span>
       </p>
       
+      ${whiteSpace(10)}
     </div>
     `
   }
