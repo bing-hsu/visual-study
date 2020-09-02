@@ -1,5 +1,5 @@
 import {Component, ComponentConstructor, staticMember} from "../types";
-import {registerComponent} from "../util";
+import {registerComponent, whiteSpace} from "../util";
 
 @staticMember<ComponentConstructor>()
 export default class UebaDeploy extends HTMLElement implements Component {
@@ -58,6 +58,7 @@ export default class UebaDeploy extends HTMLElement implements Component {
             </span>
         </p>
         ${scrollBackToTop()}
+        ${whiteSpace(10)}
     </div>
     `
   }
@@ -79,7 +80,7 @@ registerComponent(UebaDeploy.tagName(), UebaDeploy);
 
 function scrollBackToTop() {
   return `
-   <div class="scroll_background back-to-top">
+   <div class="scroll_background back-to-top" style="z-index: 100;">
         <div class="keep-scroll">
             <p style="margin-bottom: 5px;">Back to Top</p>
             <svg height="40" width="40">
