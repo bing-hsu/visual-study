@@ -1,5 +1,7 @@
 import {Component, ComponentConstructor, staticMember} from "../types";
-import {registerComponent, whiteSpace} from "../util";
+import {registerComponent, whiteSpace, windowSelection} from "../util";
+import {scaleLinear} from "d3-scale";
+import {select} from "d3-selection";
 // @ts-ignore
 import worldPng from "../../script/static/img/world.png";
 import "./UebaIntro.css"
@@ -32,6 +34,8 @@ export default class UebaIntro extends HTMLElement implements Component {
 
   connectedCallback() {
     this.render();
+    // scroll opacity transition
+    windowSelection.on('load.keep-scroll', scrollDownOpacityAnimation);
   }
 }
 
@@ -86,4 +90,22 @@ function IntroScrollBackground() {
         </div> 
       </div>
  `
+}
+
+function scrollDownOpacityAnimation() {
+  const introSelection = select<HTMLElement, never>(UebaIntro.tagName());
+  const scrollSelection = introSelection.select<HTMLElement>(".scroll_background");
+  if (scrollSelection.node()) {
+    const exitOffset = introSelection.node().clientHeight * .5;
+    const opacityScale = scaleLinear()
+        .domain([0, exitOffset])
+        .range([1, 0])
+        .clamp(true);
+
+    select(window)
+        .on('scroll.keep-scroll', () => {
+          scrollSelection
+              .style('opacity', () => opacityScale(scrollY))
+        })
+  }
 }

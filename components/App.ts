@@ -1,12 +1,15 @@
 import {Component, ComponentConstructor, staticMember} from "./types";
+import {loadTag, registerComponent, windowSelection} from "./util";
+import {select} from "d3-selection";
 import UebaHeader from "./Header/UebaHeader";
-import {loadTag, registerComponent} from "./util";
 import UebaIntro from "./Intro/UebaIntro";
 import UebaDataUnderstand from "./DataUnderstand/UebaDataUnderstand";
 import UebaDataPrep from "./DataPrep/UebaDataPrep";
 import UebaModel from "./Modeling/UebaModel";
 import UebaEval from "./Eval/UebaEval";
 import UebaDeploy from "./Deploy/UebaDeploy";
+import VisualBlockDataUnderstand from "./VisualBlock/VisualBlockDataUnderstand";
+import {computeHeightOfRows} from "./VisualBlock/util";
 
 
 const Tags = {
@@ -16,7 +19,8 @@ const Tags = {
   UebaDataPrep: UebaDataPrep.tagName(),
   UebaModel: UebaModel.tagName(),
   UebaEval: UebaEval.tagName(),
-  UebaDeploy: UebaDeploy.tagName()
+  UebaDeploy: UebaDeploy.tagName(),
+  VisualBlockDataUnderstand: VisualBlockDataUnderstand.tagName(),
 }
 
 @staticMember<ComponentConstructor>()
@@ -42,7 +46,24 @@ export default class UebaApp extends HTMLElement implements Component {
 
   connectedCallback() {
     this.render();
+    const self = this;
+    windowSelection.on('load.vis-block', function () {
+      const {
+        uebaHeaderHeight, uebaIntroHeight, uebaDataUnderstandHeight,
+        uebaDataPrepHeight, uebaModelHeight, uebaEvalHeight,
+        uebaDeployHeight
+      } = computeHeightOfRows();
+      self.innerHTML += ""
+          // ` ${loadTag(Tags.VisualBlockDataUnderstand, {
+          //   className: ['vis-block'],
+          //   attrs: {
+          //     'preShowYOffset': uebaHeaderHeight + uebaIntroHeight + '',
+          //     'afterShowYOffset': uebaHeaderHeight + uebaIntroHeight + uebaDataUnderstandHeight - innerHeight + ''
+          //   }
+          // })} `
+    })
   }
 }
 
 registerComponent(UebaApp.tagName(), UebaApp);
+

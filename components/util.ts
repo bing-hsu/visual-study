@@ -1,4 +1,4 @@
-// @ts-ignore
+import {select} from "d3-selection";
 
 export function registerComponent(n: string, e: CustomElementConstructor) {
   if (!customElements.get(n)) {
@@ -26,3 +26,5 @@ export function loadTag(tagName: string, opts?: AttrOptions) {
 export function whiteSpace(height: number) {
   return `<hr class="whitespace" style="height: ${height}vh;"/>`
 }
+
+export const windowSelection = select(window);

@@ -4,8 +4,13 @@ export interface Component {
   connectedCallback(): void;
 }
 
-export interface ComponentConstructor {
-  new(): Component;
+export interface VisualBlockComponent extends Omit<Component, 'renderHtml' | 'render'> {
+  preShowYOffset: number;
+  afterShowYOffset: number;
+}
+
+export interface ComponentConstructor<T = Component> {
+  new(): T;
   tagName(): string
 }
 

@@ -103,7 +103,8 @@ a:hover {
     margin: 0;
 
     /* for debug */
-    border: 1px dashed;
+    /*border: 1px dashed;*/
+    border: none;
 }
 
 .content-card {
@@ -312,4 +313,11 @@ a:hover {
 }
 .back-to-top {
     cursor: pointer;
+}
+
+.vis-block {
+    height: 100vh;
+    width: 45%;
+    border: 1px dashed;
+    background-color: #eeeeee;
 }
