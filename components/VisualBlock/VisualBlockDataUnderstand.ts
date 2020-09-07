@@ -1,31 +1,34 @@
-import {ComponentConstructor, staticMember, VisualBlockComponent} from "../types";
-import {registerComponent, windowSelection} from "../util";
+import {ComponentConstructor, VisualBlockComponent} from "../types";
+import {registerComponent} from "../util";
 import {setVisBlockPosition} from "./util";
 
 // @staticMember<ComponentConstructor<VisualBlockComponent>>()
-export default class VisualBlockDataUnderstand extends HTMLElement implements VisualBlockComponent {
-  static tagName = () => 'visualblock-data-understand';
+export default function VisualBlockFactory(tagName: string, isRight: boolean): ComponentConstructor<VisualBlockComponent> {
+  class VisualBlock extends HTMLElement implements VisualBlockComponent {
+    static tagName = () => tagName;
 
-  public preShowYOffset = 0;
-  public afterShowYOffset = 0;
+    public preShowYOffset = 0;
+    public afterShowYOffset = 0;
 
-  constructor() {
-    super();
+    connectedCallback() {
+      this.preShowYOffset = +this.getAttribute('preShowYOffset');
+      this.afterShowYOffset = +this.getAttribute('afterShowYOffset');
+
+      setVisBlockPosition({
+        elem: this,
+        preShowYOffset: this.preShowYOffset,
+        afterShowYOffset: this.afterShowYOffset,
+        scrollEventClass: VisualBlock.tagName(),
+        isRight
+      })
+    }
   }
 
-  connectedCallback() {
-    this.preShowYOffset = +this.getAttribute('preShowYOffset');
-    this.afterShowYOffset = +this.getAttribute('afterShowYOffset');
-    setVisBlockPosition({
-      elem: this,
-      preShowYOffset: this.preShowYOffset,
-      afterShowYOffset: this.afterShowYOffset,
-      scrollEventClass: VisualBlockDataUnderstand.tagName(),
-      isRight: true
-    })
-  }
+  registerComponent(tagName, VisualBlock);
 
+  return VisualBlock;
 }
 
 
-registerComponent(VisualBlockDataUnderstand.tagName(), VisualBlockDataUnderstand);
+
+

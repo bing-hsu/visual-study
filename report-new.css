@@ -60,7 +60,8 @@ a:hover {
 .row {
     display: block;
     margin: 0 -15px;
-    /*background-color: rgba(157, 157, 157, 0.1);*/
+    /*background-color: rgba(243, 2, 2, .5);*/
+    /*border: 2px solid;*/
 }
 
 

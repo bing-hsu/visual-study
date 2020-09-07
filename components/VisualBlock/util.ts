@@ -7,6 +7,7 @@ import UebaModel from "../Modeling/UebaModel";
 import UebaEval from "../Eval/UebaEval";
 import UebaDeploy from "../Deploy/UebaDeploy";
 import {windowSelection} from "../util";
+import UebaApp from "../App";
 
 /*************************************
  * compute row outer height
@@ -76,61 +77,86 @@ function makeShowStatusPredicates(opts: Pick<VisBlockPositionSetOpts, 'preShowYO
   }
 }
 
-type PositionStatus = 'in-show' | 'pre-show' | 'after-show';
+// TODO: why this doesn't work?
+// type PositionStatus = 'in-show' | 'pre-show' | 'after-show';
+// function positionStateMachine() {
+//   let isInPreShowPosition = false;
+//   let isInInShowPosition = false;
+//   let isInAfterShowPosition = false;
+//   const reset = () => {
+//     isInPreShowPosition = false;
+//     isInPreShowPosition = false;
+//     isInAfterShowPosition = false;
+//   }
+//   return {
+//     set(status: PositionStatus) {
+//       reset();
+//       switch (status) {
+//         case "after-show":
+//           isInAfterShowPosition = true;
+//           break;
+//         case "in-show":
+//           isInInShowPosition = true;
+//           break;
+//         case "pre-show":
+//           isInPreShowPosition = true;
+//           break;
+//       }
+//     },
+//     get(status: PositionStatus) {
+//       switch (status) {
+//         case "after-show":
+//           return isInAfterShowPosition;
+//         case "in-show":
+//           return isInInShowPosition;
+//         case "pre-show":
+//           return isInPreShowPosition
+//       }
+//     }
+//   }
+// }
+//
 
-function positionStateMachine() {
-  let isInPreShowPosition = false;
-  let isInInShowPosition = false;
-  let isInAfterShowPosition = false;
-  const reset = () => {
-    isInPreShowPosition = false;
-    isInPreShowPosition = false;
-    isInAfterShowPosition = false;
-  }
-  return {
-    set(status: PositionStatus) {
-      reset();
-      switch (status) {
-        case "after-show":
-          isInAfterShowPosition = true;
-          break;
-        case "in-show":
-          isInInShowPosition = true;
-          break;
-        case "pre-show":
-          isInPreShowPosition = true;
-          break;
-      }
-    },
-    get(status: PositionStatus) {
-      switch (status) {
-        case "after-show":
-          return isInAfterShowPosition;
-        case "in-show":
-          return isInInShowPosition;
-        case "pre-show":
-          return isInPreShowPosition
-      }
+const once = (fn: () => any) => {
+  let n = 0;
+  return function () {
+    if (n == 0) {
+      fn();
+      n += 1;
     }
   }
 }
 
 function makePositionSetter(opts: Omit<VisBlockPositionSetOpts, 'scrollEventClass'>) {
-  const statusMachine = positionStateMachine();
+  // const statusMachine = positionStateMachine();
   const {elem, afterShowYOffset, preShowYOffset, isRight} = opts;
   const selection = select(elem);
+  let visBlockWidth = 0;
+  let visBlockRight = 0;
+  let visBlockLeft = 0;
+  const setDimensionOnce = once(() => {
+    const elem = selection.node();
+    const boundBox = elem.getBoundingClientRect();
+    visBlockWidth = elem.clientWidth;
+    visBlockRight = boundBox.right;
+    visBlockLeft = innerWidth - visBlockRight;
+    console.log('Compute dimensions for visual block')
+  });
+
   return {
     setPreShowPosition: () => {
       selection
           .style('position', 'absolute')
           .style('top', preShowYOffset)
           .style(isRight ? 'right' : 'left', 0);
+      setDimensionOnce();
     },
     setInShowPosition: () => {
       selection
           .style('position', 'fixed')
           .style('top', 0)
-          .style('width', '43%')
+          .style('width', visBlockWidth)
+          .style(isRight ? 'right' : 'left', isRight ? visBlockLeft : visBlockRight - visBlockWidth);
     },
     setAfterShowPosition: () => {
       selection
@@ -152,7 +178,7 @@ export function setVisBlockPosition(opts: VisBlockPositionSetOpts) {
   setPreShowPosition();
 
   function setPosition() {
-    console.log('isAfterShow %s, isInShow %s, isPreShow %s', isAfterShow(), isInShow(), isPreShow())
+    // console.log('isAfterShow %s, isInShow %s, isPreShow %s', isAfterShow(), isInShow(), isPreShow())
     if (isAfterShow()) setAfterShowPosition();
     else if (isInShow()) setInShowPosition();
     else if (isPreShow()) setPreShowPosition();
