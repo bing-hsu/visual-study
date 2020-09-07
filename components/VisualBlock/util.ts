@@ -117,13 +117,23 @@ function makeShowStatusPredicates(opts: Pick<VisBlockPositionSetOpts, 'preShowYO
 // }
 //
 
-const once = (fn: () => any) => {
+export const once = (fn: () => any) => {
   let n = 0;
   return function () {
     if (n == 0) {
       fn();
       n += 1;
     }
+  }
+}
+export const throttle = (fn: () => any, delay: number) => {
+  let job = null;
+  return function () {
+    if (job) return;
+    job = setTimeout(function () {
+      fn();
+      job = null;
+    }, delay)
   }
 }
 
@@ -188,3 +198,8 @@ export function setVisBlockPosition(opts: VisBlockPositionSetOpts) {
   windowSelection.on(`scroll.${scrollEventClass}`, setPosition);
 }
 
+export function isElementAtCenterViewPort(e: Element, inAdvanceYDelta: number, inShowYDelta: number): boolean {
+  const bbox = e.getBoundingClientRect();
+  const halfHeight = innerHeight / 2;
+  return bbox.top <= halfHeight + inAdvanceYDelta && bbox.top >= halfHeight - inShowYDelta;
+}

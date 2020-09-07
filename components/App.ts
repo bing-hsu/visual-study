@@ -19,11 +19,11 @@ const Tags = {
   UebaModel: UebaModel.tagName(),
   UebaEval: UebaEval.tagName(),
   UebaDeploy: UebaDeploy.tagName(),
-  VisualBlockDataUnderstand: VisualBlockFactory('visual-block-data-understand', true).tagName(),
-  VisualBlockDataPrep: VisualBlockFactory('visual-block-data-prep', false).tagName(),
-  VisualBlockModel: VisualBlockFactory('visual-block-model', true).tagName(),
-  VisualBlockEval: VisualBlockFactory('visual-block-eval', false).tagName(),
-  VisualBlockDeploy: VisualBlockFactory('visual-block-deploy', true).tagName()
+  VisualBlockDataUnderstand: VisualBlockFactory('visual-block-data-understand', true, UebaDataUnderstand.tagName()).tagName(),
+  VisualBlockDataPrep: VisualBlockFactory('visual-block-data-prep', false, UebaDataPrep.tagName()).tagName(),
+  VisualBlockModel: VisualBlockFactory('visual-block-model', true, UebaModel.tagName()).tagName(),
+  VisualBlockEval: VisualBlockFactory('visual-block-eval', false, UebaEval.tagName()).tagName(),
+  VisualBlockDeploy: VisualBlockFactory('visual-block-deploy', true, UebaDeploy.tagName()).tagName()
 }
 
 // @staticMember<ComponentConstructor>()

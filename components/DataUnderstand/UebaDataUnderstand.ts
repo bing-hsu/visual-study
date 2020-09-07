@@ -18,13 +18,19 @@ export default class UebaDataUnderstand extends HTMLElement implements Component
         of employees so as to reduce the risk of confidential 
         data leakage. 
       </p>
-      <p class="content-card"> 
+      
+      ${whiteSpace(20)}
+      
+      <p class="content-card" id="anchor-3-models"> 
       <span>
           <span class="content-card__highlight right-margin">3</span>
           models 
       </span>
       </p>
-      <p class="content-card">
+      
+      ${whiteSpace(20)}
+      
+      <p class="content-card" id="anchor-4-dimensions">
           <span> 
             <span class="content-card__highlight right-margin">4</span>
             dimensions
@@ -35,11 +41,17 @@ export default class UebaDataUnderstand extends HTMLElement implements Component
           <span class="content-card__list-item variable-name" style="width: 12em;">Capability</span>
           <span class="content-card__list-item variable-name" style="width: 12em;">Behavior</span>
       </span>
+      
+      ${whiteSpace(20)}
+      
       </p>
-      <p class="content-card">
+      <p class="content-card" id="anchor-207-vars">
         <span class="content-card__highlight right-margin">207</span>
         Variables
       </p>
+      
+      ${whiteSpace(20)}
+      
       <p class="content-card"> 
         Among these variables,
         <span class="content-card__highlight both-margin">16</span>
@@ -67,6 +79,9 @@ export default class UebaDataUnderstand extends HTMLElement implements Component
             to improve the stability of the model
         </span>
       </p>
+      
+      
+      ${whiteSpace(10)}
       
       <p class="sub-section-title">Regarding data labels</p>
       <p class="content-card flex-content" id="visual-model-samples">
