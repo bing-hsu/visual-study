@@ -2,6 +2,7 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "target": "ES6",
-    "lib": ["ES7", "DOM", "ES2017.Object"]
+    "lib": ["ES7", "DOM", "ES2017.Object"],
+    "allowSyntheticDefaultImports": true
   }
 }
