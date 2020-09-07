@@ -1,11 +1,11 @@
 import {Component, ComponentConstructor, staticMember} from "../types";
 import {registerComponent} from "../util";
 // @ts-ignore
-import logo from "../../script/static/pwc-logo.png";
+import logo from "url:../../script/static/pwc-logo.png";
 import "./UebaHeader.css"
 
 
-@staticMember<ComponentConstructor>()
+// @staticMember<ComponentConstructor>()
 export default class UebaHeader extends HTMLElement implements Component {
   static tagName = () => 'ueba-header';
 

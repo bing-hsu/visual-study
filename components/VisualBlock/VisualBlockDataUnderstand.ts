@@ -2,7 +2,7 @@ import {ComponentConstructor, staticMember, VisualBlockComponent} from "../types
 import {registerComponent, windowSelection} from "../util";
 import {setVisBlockPosition} from "./util";
 
-@staticMember<ComponentConstructor<VisualBlockComponent>>()
+// @staticMember<ComponentConstructor<VisualBlockComponent>>()
 export default class VisualBlockDataUnderstand extends HTMLElement implements VisualBlockComponent {
   static tagName = () => 'visualblock-data-understand';
 

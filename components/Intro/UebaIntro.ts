@@ -3,10 +3,10 @@ import {registerComponent, whiteSpace, windowSelection} from "../util";
 import {scaleLinear} from "d3-scale";
 import {select} from "d3-selection";
 // @ts-ignore
-import worldPng from "../../script/static/img/world.png";
+import worldPng from "url:../../script/static/img/world.png";
 import "./UebaIntro.css"
 
-@staticMember<ComponentConstructor>()
+// @staticMember<ComponentConstructor>()
 export default class UebaIntro extends HTMLElement implements Component {
   static tagName = () => 'ueba-intro'
 

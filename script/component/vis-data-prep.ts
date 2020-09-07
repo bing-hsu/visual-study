@@ -1,8 +1,8 @@
 import * as d3 from "d3";
 // @ts-ignore
-import boxPlotPng from "../static/img/boxplot.png";
+import boxPlotPng from "url:../static/img/boxplot.png";
 // @ts-ignore
-import clusterPng from "../static/img/cluster.png";
+import clusterPng from "url:../static/img/cluster.png";
 // @ts-ignore
 import "./vis-data-prep.css";
 

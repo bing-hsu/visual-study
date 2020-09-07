@@ -23,7 +23,7 @@ const Tags = {
   VisualBlockDataUnderstand: VisualBlockDataUnderstand.tagName(),
 }
 
-@staticMember<ComponentConstructor>()
+// @staticMember<ComponentConstructor>()
 export default class UebaApp extends HTMLElement implements Component {
 
   static tagName = () => "ueba-app"

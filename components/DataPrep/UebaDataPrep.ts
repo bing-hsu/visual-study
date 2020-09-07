@@ -1,7 +1,7 @@
 import {Component, ComponentConstructor, staticMember} from "../types";
 import {registerComponent, whiteSpace} from "../util";
 
-@staticMember<ComponentConstructor>()
+// @staticMember<ComponentConstructor>()
 export default class UebaDataPrep extends HTMLElement implements Component {
   static tagName = () => "ueba-data-prep"
 
