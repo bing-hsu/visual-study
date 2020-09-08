@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 // @ts-ignore
 import * as echarts from "echarts";
-import {isLarge} from "../main";
+import {isLarge} from "../main-deprecate";
 import {dataPrepRowHeight, headerHeight, introRowHeight, modelingRowHeight} from "../report-main";
 
 // const chart = echarts.init(document.getElementById('vis-eval'));
@@ -80,6 +80,7 @@ function render1() {
       }
     ]
   };
+
   pp0.setOption(opts);
 }
 

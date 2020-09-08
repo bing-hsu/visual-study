@@ -1,6 +1,6 @@
 import "../style/intro.css"
 import "../style/data-understand.css"
-import "./main";
+import "./main-deprecate";
 
 import 'regenerator-runtime/runtime'
 import {d3} from "./depts";

@@ -57,7 +57,7 @@ export default class UebaDataPrep extends HTMLElement implements Component {
         </span>
     </p>
     ${whiteSpace(10)}
-    <p class="content-card flex-content"> 
+    <p class="content-card flex-content" id="visual-combo-check"> 
         <span class="emphasize">Variable Combo Check</span>
         <span class="content-card__list"> 
           <span class="flex-content" style="margin-bottom: 2em;"> 
@@ -91,7 +91,7 @@ export default class UebaDataPrep extends HTMLElement implements Component {
     </p>
     
     <p class="sub-section-title">Balance Check</p>
-    <p class="content-card flex-content">
+    <p class="content-card flex-content" id="visual-balance-check">
         <span class="emphasize" style="margin-bottom: 2.5em;">
             Ratio of 
             <span class="badge positive">label = positive</span> 

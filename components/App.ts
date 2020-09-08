@@ -7,7 +7,7 @@ import UebaDataPrep from "./DataPrep/UebaDataPrep";
 import UebaModel from "./Modeling/UebaModel";
 import UebaEval from "./Eval/UebaEval";
 import UebaDeploy from "./Deploy/UebaDeploy";
-import VisualBlockFactory from "./VisualBlock/VisualBlockDataUnderstand";
+import VisualBlockFactory from "./VisualBlock/VisualBlockFactory";
 import {computeHeightOfRows} from "./VisualBlock/util";
 
 
@@ -51,6 +51,8 @@ export default class UebaApp extends HTMLElement implements Component {
     this.render();
     const self = this;
     windowSelection.on('load.vis-block', function () {
+
+
       // load visual block elements after page is loaded, row height calculable
       const {
         uebaHeaderHeight, uebaIntroHeight, uebaDataUnderstandHeight,
@@ -64,7 +66,8 @@ export default class UebaApp extends HTMLElement implements Component {
           className: ['vis-block'],
           attrs: {
             preShowYOffset: preShowYOffset + '',
-            afterShowYOffset: afterShowYOffset + ''
+            afterShowYOffset: afterShowYOffset + '',
+            id: tagName
           }
         })}
         `.trim();
@@ -97,6 +100,9 @@ export default class UebaApp extends HTMLElement implements Component {
       );
 
       self.innerHTML += visBlockDataUnderstandHtml + visBlockDataPrepHtml + visBlockModelHtml + visBlockEvalHtml + visBlockDeployHtml;
+
+      // tree plot
+      import("../script/main");
     })
   }
 }

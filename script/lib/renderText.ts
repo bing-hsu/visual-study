@@ -1,11 +1,11 @@
-import * as d3 from "d3";
+import {select, selectAll} from "d3";
 import {HierarchyPointNode} from "d3-hierarchy";
-import {BaseType, HierarchyPointLink} from "d3";
+import {BaseType, HierarchyPointLink, Selection} from "d3";
 import {TreeNode} from "./prepTreeData";
 import {isLarge} from "../main";
 
 export interface TextRenderOptions<NodeDatum> {
-  container: d3.Selection<any, any, any, any>;
+  container: Selection<any, any, any, any>;
   groupClassName: string;
   root: HierarchyPointNode<NodeDatum>;
   keyFn: (o: HierarchyPointNode<NodeDatum>) => string;
@@ -21,15 +21,15 @@ export function renderText<NodeDatum extends TreeNode>(opts: TextRenderOptions<N
       .data<HierarchyPointLink<NodeDatum>>(root.links(), keyFn)
       .join('text')
       .attr('text-anchor', 'middle')
-      .attr('font-size', isLarge ? '12px' : "10px")
-      .attr('font-family', '"Helvetica Neue", Helvetica, sans-serif')
+      .style('font-size', isLarge ? '12px' : "10px")
+      .style('font-family', '"Helvetica Neue", Helvetica, sans-serif')
       .attr('x', d => cptTextPos(d).x)
       .attr('y', d => cptTextPos(d).y)
       .attr('opacity', 0)
       .text(d => d.source.data.condition);
 
-  d3.select(window).on('scroll.scrollText', function (){
-    d3.selectAll<BaseType, HierarchyPointLink<TreeNode>>(`g.${groupClassName} text`)
+  select(window).on('scroll.scrollText', function (){
+    selectAll<BaseType, HierarchyPointLink<TreeNode>>(`g.${groupClassName} text`)
         .attr('opacity', d => onScrollingOpacityMap[d.target.depth](window.scrollY));
   })
 }

@@ -1,20 +1,20 @@
-import * as d3 from "d3";
+import {select, selectAll, max} from "d3";
 import {HierarchyPointNode} from "d3-hierarchy";
-import {BaseType, HierarchyPointLink, max} from "d3";
+import {BaseType, HierarchyPointLink, Selection} from "d3";
 import {TreeNode} from "./prepTreeData";
 
 export interface LinkRenderOptions<NodeDatum> {
-  container: d3.Selection<any, any, any, any>;
+  container: Selection<any, any, any, any>;
   groupClassName: string;
   root: HierarchyPointNode<NodeDatum>;
   keyFn: (o: HierarchyPointLink<NodeDatum>) => string;
   strokeWidthFn: (o: HierarchyPointLink<NodeDatum>) => number;
   strokeColorFn: (o: HierarchyPointLink<NodeDatum>) => string;
-  onScrollingOpacityMap: {[k: number]: (n: number) => number};
-  onScrollingLineWidthMap: {[k: number]: (n: number) => number};
+  onScrollingOpacityMap: { [k: number]: (n: number) => number };
+  onScrollingLineWidthMap: { [k: number]: (n: number) => number };
 }
 
-const cptPath = <NodeDatum>(o: HierarchyPointLink<NodeDatum>, offsetPortion:number = .2) => {
+const cptPath = <NodeDatum>(o: HierarchyPointLink<NodeDatum>, offsetPortion: number = .2) => {
   const {source, target} = o;
   const {x: sourceX, y: sourceY} = source;
   const {x: targetX, y: targetY} = target;
@@ -38,13 +38,13 @@ export function renderLinks<NodeDatum>(opts: LinkRenderOptions<NodeDatum>): void
       .attr('fill', 'none')
       .attr('opacity', 0);
 
-  d3.select(window).on('scroll.scrollLink', function (){
-    d3.selectAll<BaseType, HierarchyPointLink<TreeNode>>(`g.${groupClassName} path`)
+  select(window).on('scroll.scrollLink', function () {
+    selectAll<BaseType, HierarchyPointLink<TreeNode>>(`g.${groupClassName} path`)
         .attr('opacity', d => onScrollingOpacityMap[d.target.depth](window.scrollY))
-        .attr('stroke-width', function(d) {
-          const maxWidth = +d3.select(this).attr('data-max-stroke-width');
+        .attr('stroke-width', function (d) {
+          const maxWidth = +select(this).attr('data-max-stroke-width');
           const score = onScrollingLineWidthMap[d.target.depth](window.scrollY);
-          return d3.max([1, score * maxWidth]);
+          return max([1, score * maxWidth]);
         })
   })
 }

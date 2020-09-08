@@ -103,8 +103,8 @@ a:hover {
     padding: 0;
     margin: 0;
     /* for debug */
-    border: 1px dashed;
-    /*border: none;*/
+    /*border: 1px dashed;*/
+    border: none;
 }
 
 .content-card {
@@ -318,6 +318,7 @@ a:hover {
 .vis-block {
     height: 100vh;
     width: 45%;
-    border: 1px dashed;
-    background-color: #eeeeee;
+    /* for debug */
+    /*border: 1px dashed;*/
+    /*background-color: #eeeeee;*/
 }

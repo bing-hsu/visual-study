@@ -27,7 +27,7 @@ export default class UebaDeploy extends HTMLElement implements Component {
                 model in financial service industry
             </span>
         </p>
-        <p class="content-card">
+        <p class="content-card" id="visual-deploy">
             <a href="#"> 
                 System log analysis
             </a> 

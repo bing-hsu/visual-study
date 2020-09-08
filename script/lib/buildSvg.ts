@@ -1,4 +1,4 @@
-import * as d3 from "d3";
+import {select, selectAll} from "d3";
 import {idSelector} from "./util";
 import type {Dimension, Margin} from "../types";
 
@@ -7,13 +7,13 @@ export interface SvgBuilderOptions {
   containerSelector: string;
   svgId: string;
   dim: Dimension;
-  margin: Margin
+  margin: Margin;
 }
 
 export default function buildSvg({containerSelector, svgId, dim, margin}: SvgBuilderOptions) {
   const containerGroupId = `${svgId}__container`;
 
-  d3.select(containerSelector)
+  select(containerSelector)
       .append("svg")
       .attr("id", svgId)
       .attr("width", dim.width)
@@ -24,8 +24,8 @@ export default function buildSvg({containerSelector, svgId, dim, margin}: SvgBui
       .attr("transform", `translate(${margin.left},${margin.top})`);
 
   return {
-    getSvg: () => d3.select(idSelector(svgId)),
-    getContainer: () => d3.select(idSelector(containerGroupId)),
+    getSvg: () => select(idSelector(svgId)),
+    getContainer: () => select(idSelector(containerGroupId)),
     chartWidth: dim.width - margin.left - margin.right,
     chartHeight: dim.height - margin.top - margin.bottom,
   };

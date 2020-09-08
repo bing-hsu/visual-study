@@ -1,7 +1,7 @@
 import {ComponentConstructor, VisualBlockComponent} from "../types";
 import {registerComponent} from "../util";
 import {setVisBlockPosition} from "./util";
-import {visualsDataUnderstand} from "./visuals";
+import {visualDeploy, visualEval, visualsDataPrep, visualsDataUnderstand} from "./visuals";
 
 type TagNames =
     'visual-block-data-understand'
@@ -34,6 +34,15 @@ export default function VisualBlockFactory(tagName: TagNames, isRight: boolean, 
       switch (tagName) {
         case "visual-block-data-understand":
           visualsDataUnderstand(this);
+          break;
+        case "visual-block-data-prep":
+          visualsDataPrep(this);
+          break;
+        case "visual-block-eval":
+          visualEval(this);
+          break;
+        case "visual-block-deploy":
+          visualDeploy(this);
           break;
       }
     }

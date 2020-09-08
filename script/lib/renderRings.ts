@@ -1,11 +1,11 @@
-import * as d3 from "d3";
+import {select, selectAll, pie, arc} from "d3";
 import {HierarchyPointNode} from "d3-hierarchy";
 import {TreeNode} from "./prepTreeData";
-import {BaseType, HierarchyPointLink, PieArcDatum} from "d3";
+import {BaseType, PieArcDatum, Selection} from "d3";
 import {defaultRadius} from "./renderNode";
 
 export interface RingRenderOptions<NodeDatum extends TreeNode> {
-  container: d3.Selection<any, any, any, any>;
+  container: Selection<any, any, any, any>;
   groupClassName: string;
   root: HierarchyPointNode<NodeDatum>;
   radiusFn: (o: HierarchyPointNode<NodeDatum>) => number;
@@ -35,8 +35,8 @@ export function renderRings<NodeDatum extends TreeNode>(opts: RingRenderOptions<
       .attr('stroke-width', 2)
       .attr('opacity', 0);
 
-  d3.select(window).on('scroll.scrollRing', function () {
-    d3.selectAll<BaseType, PieArcDatum<HierarchyPointNode<TreeNode>>>(`g.${groupClassName} path`)
+  select(window).on('scroll.scrollRing', function () {
+    selectAll<BaseType, PieArcDatum<HierarchyPointNode<TreeNode>>>(`g.${groupClassName} path`)
         .attr('opacity', d => onScrollingOpacityMap[d.data.depth](window.scrollY));
   })
 }
@@ -44,9 +44,9 @@ export function renderRings<NodeDatum extends TreeNode>(opts: RingRenderOptions<
 function cptArcsAndPath<NodeDatum extends TreeNode>(
     rootPoint: HierarchyPointNode<NodeDatum>,
     radiusScale: (o: HierarchyPointNode<NodeDatum>) => number) {
-  const cptAngles = d3.pie<HierarchyPointNode<NodeDatum>>().value(d => +d.data.samples)
+  const cptAngles = pie<HierarchyPointNode<NodeDatum>>().value(d => +d.data.samples)
   const innerRadiusPortion = .5
-  const arcPathGen = d3.arc<PieArcDatum<HierarchyPointNode<NodeDatum>>>()
+  const arcPathGen = arc<PieArcDatum<HierarchyPointNode<NodeDatum>>>()
       // .innerRadius(d => radiusScale(d.data.parent) * innerRadiusPortion)
       // .outerRadius(d => radiusScale(d.data.parent))
       .innerRadius(defaultRadius * innerRadiusPortion)

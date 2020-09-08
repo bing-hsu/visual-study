@@ -12,7 +12,7 @@ export default class UebaEval extends HTMLElement implements Component {
       <p class="section-title">Evaluation</p>
       
       <p class="sub-section-title">Score</pc>
-      <p class="content-card"> 
+      <p class="content-card" > 
         Overall score is
         <span class="content-card__highlight both-margin">85%</span>
       </p>
@@ -24,7 +24,7 @@ export default class UebaEval extends HTMLElement implements Component {
             models used in financial service industry
         </span>
       </p>
-      <p class="content-card"> 
+      <p class="content-card" id="visual-score"> 
         Recall of negative samples is
         <span class="content-card__highlight--shout"> 
             relatively low
@@ -49,7 +49,7 @@ export default class UebaEval extends HTMLElement implements Component {
       </p>
       
       <p class="sub-section-title">Feature Importance</p>
-      <p class="content-card"> 
+      <p class="content-card" id="visual-feat-importance"> 
         Top <span class="content-card__highlight--shout both-margin">5</span>
         important features in each model
       </p>

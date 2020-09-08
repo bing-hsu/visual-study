@@ -129,32 +129,37 @@ export default class UebaModel extends HTMLElement implements Component {
             Additional forks will add new information that 
             can increase a tree's prediction accuracy. 
         </p>
+        ${whiteSpace(20)}
         <p class="content-card">
             Splitting one layer deeper, the tree's accuracy improves to 
             <span class="content-card__highlight small both-margin">80%</span>. 
         </p>
+        ${whiteSpace(20)}
         <p class="content-card">
             Adding several more layers, we get to
             <span class="content-card__highlight small both-margin">85%</span>. 
         </p>
+        ${whiteSpace(20)}
         <p class="content-card">
             It is possible to continue to add branches until 
             the tree's predictions are
             <span class="content-card__highlight small both-margin">95%</span> 
         </p>
+        ${whiteSpace(20)}
         
         <p class="sub-section-title">Making Prediction</p>
         <p class="content-card">
             The decision tree model determines whether a behavior is risky or not.
         </p>
+        ${whiteSpace(20)}
         <p class="content-card">
             Here you can see the data that was used to train the tree flow through the tree.
         </p>
+        ${whiteSpace(20)}
         <p class="content-card">
             This data is called training data because it was used to train the model.
         </p>
-        
-        ${whiteSpace(10)}
+        ${whiteSpace(30)}
     </div> 
     `
   }

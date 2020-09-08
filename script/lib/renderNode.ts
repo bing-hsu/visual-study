@@ -1,12 +1,12 @@
-import * as d3 from "d3";
+import {select, selectAll} from "d3";
 import {HierarchyPointNode} from "d3-hierarchy";
-import {BaseType} from "d3";
+import {BaseType, Selection} from "d3";
 import {TreeNode} from "./prepTreeData";
 import {heightPerShow} from "./util";
 import {isLarge} from "../main";
 
 export interface NodeRenderOptions<NodeDatum> {
-  container: d3.Selection<any, any, any, any>;
+  container: Selection<any, any, any, any>;
   groupClassName: string;
   root: HierarchyPointNode<NodeDatum>;
   keyFn: (o: HierarchyPointNode<NodeDatum>) => string;
@@ -38,19 +38,19 @@ export function renderNode<NodeDatum>(opts: NodeRenderOptions<NodeDatum> ): void
       .attr('fill', d => fillColorFn(d))
       .attr('opacity', 0)
 
-  const allCircles = d3.selectAll<BaseType, HierarchyPointNode<TreeNode>>(`g.${groupClassName} circle`);
+  const allCircles = selectAll<BaseType, HierarchyPointNode<TreeNode>>(`g.${groupClassName} circle`);
   let radiusStatus: RadiusStatus = RadiusStatus.dynamic;
-  d3.select(window).on('scroll.scrollNode', function (){
+  select(window).on('scroll.scrollNode', function (){
         allCircles.attr('opacity', d => onScrollingOpacityMap[d.depth](window.scrollY));
         if (window.scrollY > heightPerShow && radiusStatus === RadiusStatus.dynamic) {
           allCircles
               .transition().duration(1500)
-              .attr('r', function () {return d3.select(this).attr('data-radius-default')});
+              .attr('r', function () {return select(this).attr('data-radius-default')});
           radiusStatus = RadiusStatus.default;
         } else if (window.scrollY <= heightPerShow && radiusStatus === RadiusStatus.default) {
           allCircles
               .transition().duration(500)
-              .attr('r', function () {return d3.select(this).attr('data-radius-dynamic')});
+              .attr('r', function () {return select(this).attr('data-radius-dynamic')});
           radiusStatus = RadiusStatus.dynamic;
         }
   });

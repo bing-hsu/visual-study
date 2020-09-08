@@ -117,6 +117,7 @@ export default class UebaDataUnderstand extends HTMLElement implements Component
         </span>
       </p>
       ${whiteSpace(15)}
+      
       <p class="content-card" id="visual-correlation-analysis"> 
         <a href="#">Correlation analysis</a> shows <span class="content-card__highlight small both-margin">40%</span> of the variables 
         display high correlation with the label and
