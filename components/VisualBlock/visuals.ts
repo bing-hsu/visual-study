@@ -312,7 +312,8 @@ export function visualsDataPrep(e: HTMLElement) {
           data: [
             {value: 207, id: '1', name: "variables"},
             {value: 0, id: '2', name: ""},
-          ]
+          ],
+          animationDuration: 800
         }
       ]
     },
@@ -548,7 +549,7 @@ export function visualsDataPrep(e: HTMLElement) {
       chart.setOption(renderNACheckOptions.first);
       setTimeout(() => {
         chart.setOption(renderNACheckOptions.second)
-      }, 1600)
+      }, 1000)
     }
 
     if (!getRenderState('NACheck')) {
@@ -738,7 +739,7 @@ export function visualsDataUnderstand(e: HTMLElement) {
         id: 'model-3',
         label: {show: true, position: 'inside'},
         radius: ['0%', '20%'],
-        center: ['50%', '83%'],
+        center: ['50%', '90%'],
         data: [
           {value: 1, name: 'Model #3', itemStyle: {color: '#999'}},
         ],

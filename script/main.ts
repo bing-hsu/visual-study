@@ -24,6 +24,7 @@ import type {
   NodeRenderOptions,
   LinkRenderOptions
 } from "./lib/index";
+import {computeHeightOfRows} from "../components/VisualBlock/util";
 
 const {width} = document.body.getBoundingClientRect();
 export const isLarge = width > 1440;
@@ -32,7 +33,7 @@ export const isLarge = width > 1440;
   // establish plotting area
   const plotContainerSelector = "#visual-block-model";
   const containerSel = select<HTMLElement, never>(plotContainerSelector);
-  const w = containerSel.node().clientWidth * 1.4;
+  const w = containerSel.node().clientWidth * (isLarge ? 1.4 : 1.15);
   const h = containerSel.node().clientHeight;
 
   const margin = {top: 60, bottom: 60, left: 0, right: 0};
@@ -81,7 +82,11 @@ export const isLarge = width > 1440;
   const opacityScrollingNumScaleMap = (offset: number) => scrollingExtents.map(d => scaleLinear().clamp(true).domain([d[0] + offset, d[1] + offset]).range([0, 1]));
   const lineWidthScrollingNumScaleMap = (offset: number) => scrollingExtents.map(d => scaleLinear().clamp(true).domain([d[0] + offset, d[1] + offset]).range([0, 1]))
   // render node
-  const showDelayHeight = 12288;
+  // const showDelayHeight = 12288;
+  const {uebaHeaderHeight, uebaIntroHeight, uebaDataUnderstandHeight, uebaDataPrepHeight,} = computeHeightOfRows();
+  const showDelayHeight = (document.querySelector<HTMLElement>("#anchor-grow-tree").offsetTop - innerHeight / 1.5)
+      + uebaHeaderHeight + uebaIntroHeight + uebaDataUnderstandHeight + uebaDataPrepHeight
+  console.log(showDelayHeight);
 
   const renderNodeOptions: NodeRenderOptions<TreeNode> = {
     container: getContainer(),

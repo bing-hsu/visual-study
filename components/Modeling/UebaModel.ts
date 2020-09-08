@@ -124,7 +124,7 @@ export default class UebaModel extends HTMLElement implements Component {
             </span>
         </p>
         
-        <p class="sub-section-title">Grow a tree</p>
+        <p class="sub-section-title" id="anchor-grow-tree">Grow a tree</p>
         <p class="content-card">
             Additional forks will add new information that 
             can increase a tree's prediction accuracy. 
