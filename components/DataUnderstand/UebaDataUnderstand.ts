@@ -69,7 +69,7 @@ export default class UebaDataUnderstand extends HTMLElement implements Component
       </p>
       
       <p class="sub-section-title">Regarding data labels</p>
-      <p class="content-card flex-content">
+      <p class="content-card flex-content" id="visual-model-samples">
         <span> 
             Model 1: 
             <span class="content-card__highlight small both-margin">1259</span>
@@ -101,7 +101,8 @@ export default class UebaDataUnderstand extends HTMLElement implements Component
             much as possible or use incremental training
         </span>
       </p>
-      <p class="content-card"> 
+      ${whiteSpace(15)}
+      <p class="content-card" id="visual-correlation-analysis"> 
         <a href="#">Correlation analysis</a> shows <span class="content-card__highlight small both-margin">40%</span> of the variables 
         display high correlation with the label and
         <span class="content-card__highlight small both-margin">12%</span> of them are strongly

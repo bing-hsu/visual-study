@@ -19,7 +19,8 @@
   "scripts": {
     "start:dev": "parcel report.html",
     "start:new": "parcel report-new.html -p 8080",
-    "start:test": "parcel p5-test.html"
+    "start:test": "parcel p5-test.html",
+    "start:visual": "parcel visual-playground.html -p 5050"
   },
   "keywords": [],
   "author": "",

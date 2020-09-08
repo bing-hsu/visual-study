@@ -103,8 +103,8 @@ a:hover {
     margin: 0;
 
     /* for debug */
-    /*border: 1px dashed;*/
-    border: none;
+    border: 1px dashed;
+    /*border: none;*/
 }
 
 .content-card {

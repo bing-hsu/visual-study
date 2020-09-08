@@ -20,10 +20,11 @@ export default class UebaDataPrep extends HTMLElement implements Component {
         <span class="content-card__list-item bulletin">Standardization</span>
       </span>
     </p>
+    ${whiteSpace(10)}
     <p class="sub-section-title"> 
         NA Check
     </p>
-    <p class="content-card flex-content"> 
+    <p class="content-card flex-content" id="visual-na-check"> 
         <span> 
             <span class="content-card__highlight">11</span>
             <span class="content-card__highlight--shout">variables still contain missing values</span>
@@ -40,8 +41,9 @@ export default class UebaDataPrep extends HTMLElement implements Component {
         </span>
     </p>
     
+    ${whiteSpace(20)}
     <p class="sub-section-title">Outlier Check</p>
-    <p class="content-card flex-content"> 
+    <p class="content-card flex-content" id="visual-iqr-check"> 
         <span class="emphasize">1.5 * IQR Rule Check</span>
         <span>
           <span class="content-card__highlight">21</span>
@@ -54,6 +56,7 @@ export default class UebaDataPrep extends HTMLElement implements Component {
           Consider cropping variables based on business understanding 
         </span>
     </p>
+    ${whiteSpace(10)}
     <p class="content-card flex-content"> 
         <span class="emphasize">Variable Combo Check</span>
         <span class="content-card__list"> 
