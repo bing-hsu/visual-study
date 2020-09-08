@@ -1,4 +1,4 @@
-import {select, selectAll} from "d3";
+import {select} from "d3";
 import {idSelector} from "./util";
 import type {Dimension, Margin} from "../types";
 
